@@ -18,7 +18,6 @@ mason_lspconfig.setup({
   ensure_installed = {
     "rust_analyzer",
     "pyright",
-    "bashls",
     "clangd",
     "sumneko_lua", 
   },
