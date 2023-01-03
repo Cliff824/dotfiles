@@ -39,12 +39,6 @@ lspconfig["rust_analyzer"].setup({
 })
 
 -- configure python server
-lspconfig["bashls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
-
--- configure c server
 lspconfig["pyright"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
