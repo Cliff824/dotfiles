@@ -10,3 +10,5 @@ keymap.set("n", "<leader>sx", ":close<CR>") --close current split
 
 --plugin keymaps
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+
+keymap.set("n", "<leader>u", ":UndotreeToggle<CR>")

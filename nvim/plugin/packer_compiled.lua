@@ -180,6 +180,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/cliff824/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  undotree = {
+    loaded = true,
+    path = "/home/cliff824/.local/share/nvim/site/pack/packer/start/undotree",
+    url = "https://github.com/mbbill/undotree"
   }
 }
 

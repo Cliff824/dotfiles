@@ -38,6 +38,7 @@ return packer.startup(function(use)
 
    use("nvim-lualine/lualine.nvim") -- line
 
+   use("mbbill/undotree") --undo 
    -- autocompletion
    use("hrsh7th/nvim-cmp") -- completion plugin
    use("hrsh7th/cmp-buffer") -- source for text in buffer
