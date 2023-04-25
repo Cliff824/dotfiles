@@ -21,7 +21,6 @@ treesitter.setup({
     "c",
     "bash",
     "toml",
-    "lua",
     "vim",
     "python",
   },
