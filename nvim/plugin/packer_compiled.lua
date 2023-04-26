@@ -181,6 +181,11 @@ _G.packer_plugins = {
     path = "/home/cliff824/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["transparent.nvim"] = {
+    loaded = true,
+    path = "/home/cliff824/.local/share/nvim/site/pack/packer/start/transparent.nvim",
+    url = "https://github.com/xiyaowong/transparent.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/home/cliff824/.local/share/nvim/site/pack/packer/start/undotree",
