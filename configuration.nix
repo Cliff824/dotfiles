@@ -41,6 +41,9 @@
     LC_TIME = "en_IE.UTF-8";
   };
 
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.enable = true;
+
   # Configure keymap in X11
   services.xserver = {
     layout = "gb";
@@ -75,10 +78,27 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+  nixpkgs.overlays = [
+    (final: prev: {
+      steam = prev.steam.override ({ extraPkgs ? pkgs': [], ... }: {
+        extraPkgs = pkgs': (extraPkgs pkgs') ++ (with pkgs'; [
+          libgdiplus
+        ]);
+      });
+    })
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    util-linux
     neovim 
     wget
     git
@@ -117,7 +137,21 @@
     wl-clipboard
     clipman
     vscodium
+    rustup
+    rpi-imager
+    xarchiver
+    polkit
+    polkit-kde-agent
+    steam-run
+    lutris
+    gnome3.adwaita-icon-theme
+    libxkbcommon
+    mesa
+    winetricks
+    geany
+    nwg-look
   ];
+
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
