@@ -12,9 +12,10 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ xone xpadneo ];
 
   networking.hostName = "nixos"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -45,11 +46,11 @@
   hardware.opengl.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "gb";
-    xkbVariant = "";
-  };
-  
+  #services.xserver = {
+  #  layout = "gb";
+  #  xkbVariant = "";
+  #};
+
   # Pipewire
   security.rtkit.enable = true;
   services.pipewire.wireplumber.enable = true;
@@ -72,7 +73,7 @@
   users.users.cliff824 = {
     isNormalUser = true;
     description = "Cliff824";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+    extraGroups = [ "networkmanager" "input" "wheel" "video" "audio" ];
     packages = with pkgs; [];
   };
 
@@ -99,6 +100,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     util-linux
+    linuxHeaders
     neovim 
     wget
     git
@@ -132,11 +134,11 @@
     greetd.tuigreet
     waybar
     unzip
+    vscodium
     mupdf
     papirus-icon-theme
     wl-clipboard
     clipman
-    vscodium
     rustup
     rpi-imager
     xarchiver
@@ -145,12 +147,24 @@
     steam-run
     lutris
     gnome3.adwaita-icon-theme
+    gtk4
+    gtk3
     libxkbcommon
     mesa
+    sassc
+    wineWowPackages.full
     winetricks
     geany
     nwg-look
-  ];
+    keepassxc
+    waybar
+    qbittorrent
+    mullvad-vpn
+    gtklock
+    swayidle
+    mono
+    networkmanagerapplet
+    ];
 
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -160,12 +174,12 @@
 	xwayland.enable = true;
   };
   
-  programs.waybar = {
-	enable = true;
-	package = pkgs.waybar.overrideAttrs (oldAttrs: {
-	   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-	});
-  };
+#  programs.waybar = {
+# 	enable = true;
+#	package = pkgs.waybar.overrideAttrs (oldAttrs: {
+#	   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+#	});
+#  };
 
   services.dbus.enable = true;
   xdg.portal = {
