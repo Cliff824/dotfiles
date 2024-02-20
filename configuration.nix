@@ -13,9 +13,11 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
   boot.extraModulePackages = with config.boot.kernelPackages; [ xone xpadneo ];
+  hardware.xone.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # hardware.bluetooth.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -130,6 +132,7 @@
     asunder
     pfetch
     gcc
+    fish
     syncthing
     greetd.tuigreet
     waybar
