@@ -25,6 +25,10 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on boot
+  
+  services.blueman.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Dublin";
@@ -82,6 +86,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
+  # Clean up old builds
+  nix.gc.automatic = true;
+  nix.optimise.automatic = true;
 
   programs.steam = {
     enable = true;
@@ -125,6 +132,7 @@
     xfce.thunar-volman
     xfce.thunar-archive-plugin
     xfce.thunar-media-tags-plugin
+    xorg.libXtst
     gvfs
     ntfs3g
     brightnessctl
@@ -137,7 +145,6 @@
     greetd.tuigreet
     waybar
     unzip
-    vscodium
     mupdf
     papirus-icon-theme
     wl-clipboard
@@ -147,7 +154,7 @@
     xarchiver
     polkit
     polkit-kde-agent
-    steam-run
+    #steam-run
     lutris
     gnome3.adwaita-icon-theme
     gtk4
@@ -156,19 +163,24 @@
     mesa
     sassc
     wineWowPackages.full
+    xdg-utils
     winetricks
-    geany
     nwg-look
     keepassxc
     waybar
     qbittorrent
     mullvad-vpn
-    gtklock
-    swayidle
+    waylock
     mono
     networkmanagerapplet
+    hexedit
+    gnumake
     ];
 
+  services.mullvad-vpn.enable = true;
+
+  #prevents overheating
+  services.thermald.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -203,6 +215,11 @@
 
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
+
+  # Thunar settings
+  programs.xfconf.enable = true;
+  services.tumbler.enable = true;
+  services.gvfs.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22000 ];
@@ -253,6 +270,28 @@
     TTYVHangup = true;
     TTYVTDisallocate = true;
   };
+  
+  #battery life
+#  services.tlp = {
+#      enable = true;
+#      settings = {
+#        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+#        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+#
+#        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+#        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+#
+#        CPU_MIN_PERF_ON_AC = 0;
+#        CPU_MAX_PERF_ON_AC = 100;
+#        CPU_MIN_PERF_ON_BAT = 0;
+#        CPU_MAX_PERF_ON_BAT = 20;
+#
+#       #Optional helps save long term battery health
+#       #START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+#       #STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+#
+#      };
+#};
 
 
 
