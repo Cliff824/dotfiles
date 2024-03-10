@@ -51,12 +51,6 @@
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.enable = true;
 
-  # Configure keymap in X11
-  #services.xserver = {
-  #  layout = "gb";
-  #  xkbVariant = "";
-  #};
-
   # Pipewire
   security.rtkit.enable = true;
   services.pipewire.wireplumber.enable = true;
@@ -79,7 +73,7 @@
   users.users.cliff824 = {
     isNormalUser = true;
     description = "Cliff824";
-    extraGroups = [ "networkmanager" "input" "wheel" "video" "audio" ];
+    extraGroups = [ "networkmanager" "input" "wheel" "video" "audio" "cdrom" "power" ];
     packages = with pkgs; [];
   };
 
@@ -104,6 +98,14 @@
       });
     })
   ];
+  
+  nixpkgs.config = {
+  packageOverrides = pkgs: {
+    unstable = import <nixos-unstable> {
+      config = config.nixpkgs.config;
+      };
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -154,7 +156,6 @@
     xarchiver
     polkit
     polkit-kde-agent
-    #steam-run
     lutris
     gnome3.adwaita-icon-theme
     gtk4
@@ -170,11 +171,12 @@
     waybar
     qbittorrent
     mullvad-vpn
-    waylock
     mono
     networkmanagerapplet
     hexedit
     gnumake
+    btop
+    unstable.hyprlock
     ];
 
   services.mullvad-vpn.enable = true;
