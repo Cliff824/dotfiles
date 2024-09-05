@@ -1,0 +1,18 @@
+import = []
+live_config_reload = true
+
+[shell]
+program = "/bin/bash"
+args = ["-l"]
+
+[window]
+startup_mode = "Windowed"
+title = "Alacritty"
+dynamic_title = true 
+decorations_theme_variant = "None"
+decorations = "Full"
+opacity = 0.8
+blur = false
+
+[mouse]
+hide_when_typing = true
