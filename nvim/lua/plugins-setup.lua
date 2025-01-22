@@ -1,74 +1,61 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
   end
-  return false
 end
+vim.opt.rtp:prepend(lazypath)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-local packer_bootstrap = ensure_packer()
-
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
-  augroup end
-]])
-
-local status, packer = pcall(require, "packer")
-if not status then
-   return
-end
-
-return packer.startup(function(use)
-   use("wbthomason/packer.nvim")
-   
-   use("nvim-lua/plenary.nvim")-- used by other plugins
-
-   use("savq/melange") --colorscheme
-
-   use("numToStr/Comment.nvim") -- gcc for quick comments
-
-   use("nvim-tree/nvim-tree.lua") --file explorer
-
-   use("nvim-tree/nvim-web-devicons") -- icons
-
-   use("nvim-lualine/lualine.nvim") -- line
-
-   use("mbbill/undotree") --undo 
-
-   use {"akinsho/toggleterm.nvim"} --term toggle
-
-   use {
+require("lazy").setup({
+   spec = {
+   ("wbthomason/packer.nvim"),
+   ("nvim-lua/plenary.nvim"),-- used by other plugins
+   ("savq/melange"), --colorscheme
+   ("numToStr/Comment.nvim"), -- gcc for quick comments
+   ("nvim-tree/nvim-tree.lua"), --file explorer
+   ("nvim-tree/nvim-web-devicons"), -- icons
+   ("nvim-lualine/lualine.nvim"), -- line
+   ("mbbill/undotree"), --undo 
+   {"akinsho/toggleterm.nvim"}, --term toggle
+   {
       'nvim-telescope/telescope.nvim', tag = '0.1.8',
       requires = { {'nvim-lua/plenary.nvim'} }
-   }
-   use {
+   },
+   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     requires = { {"nvim-lua/plenary.nvim"} }
-   }
-   
+   },
+   {'stevearc/vim-arduino'}, --arduino features
+   {'stevearc/dressing.nvim'}, --fancy UI boxes
+   {'sainnhe/everforest'}, --colour
    -- treesitter configuration
-   use({
+   {
      "nvim-treesitter/nvim-treesitter",
      run = function()
        local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
        ts_update()
-     end,
+     end
+   },
+   {"windwp/nvim-autopairs"}, -- autoclose parens, brackets, quotes, etc...
+   ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }), -- autoclose tags
+   {"xiyaowong/transparent.nvim"},
+   {"williamboman/mason.nvim"},
+   {"williamboman/mason-lspconfig.nvim"},
+   {"neovim/nvim-lspconfig"},
+   },
+   --colorscheme = {"everforest"},
+   -- automatically check for plugin updates
+   checker = { enabled = true },
    })
-
-   -- auto closing
-   use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
-
-   use("xiyaowong/transparent.nvim")
-
-   if packer_bootstrap then
-      require("packer").sync()
-   end
-
-end)

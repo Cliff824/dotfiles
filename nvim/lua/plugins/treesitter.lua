@@ -23,6 +23,7 @@ treesitter.setup({
     "toml",
     "vim",
     "python",
+    "arduino",
   },
   -- auto install above language parsers
   auto_install = true,

@@ -4,9 +4,10 @@ if not status then
 end
 
 local seoul256 = require("lualine.themes.seoul256")
+local everforest = require("lualine.themes.everforest")
 
 lualine.setup({
    options = {
-      theme = seoul256
+      theme = everforest
    }
 })
