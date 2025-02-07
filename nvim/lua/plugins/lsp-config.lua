@@ -12,11 +12,17 @@ require("mason-lspconfig").setup({
    ensure_installed = {
       "lua_ls",
       "clangd",
-      "arduino_language_server"
+      "arduino_language_server",
+      "html",
+      "eslint",
+      "cssls"
    }
 })
 
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup({})
 lspconfig.clangd.setup({})
-lspconfig.arduino_language_server.setup({})
+lspconfig.html.setup({})
+lspconfig.eslint.setup({})
+lspconfig.cssls.setup({})
+lspconfig.arduino_language_server.setup{}

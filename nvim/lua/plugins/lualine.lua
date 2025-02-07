@@ -3,7 +3,7 @@ if not status then
    return
 end
 
-local seoul256 = require("lualine.themes.seoul256")
+-- local seoul256 = require("lualine.themes.seoul256")
 local everforest = require("lualine.themes.everforest")
 
 lualine.setup({

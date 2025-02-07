@@ -5,8 +5,8 @@ opt.number = true
 opt.wrap = false
 
 -- indents & tabs
-opt.tabstop = 3
-opt.shiftwidth = 3
+opt.tabstop = 2
+opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 
