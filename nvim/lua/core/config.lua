@@ -30,3 +30,6 @@ opt.splitbelow = true
 -- word joiner
 opt.iskeyword:append("-")
 opt.iskeyword:append("_")
+
+
+vim.api.nvim_set_option("clipboard","unnamed") 

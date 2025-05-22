@@ -36,3 +36,7 @@ keymap.set("n", "<leader>vtc", ":TermExec cmd='gcc main.c && ./a.out'<CR>")
 keymap.set('n', 'K', vim.lsp.buf.hover, {})
 keymap.set('n', 'gd', vim.lsp.buf.definition, {})
 keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, {})
+
+
+keymap.set({ 'n', 'x' }, 'cp', '"+y')
+keymap.set({ 'n', 'x' }, 'cv', '"+p')
