@@ -40,3 +40,6 @@ keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, {})
 
 keymap.set({ 'n', 'x' }, 'cp', '"+y')
 keymap.set({ 'n', 'x' }, 'cv', '"+p')
+
+keymap.set('n', 'm', ':vsplit | terminal make<CR>')
+keymap.set('n', '<leader>m', ':vsplit | terminal make run<CR>')
