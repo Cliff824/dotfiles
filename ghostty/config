@@ -1,3 +1,4 @@
 background = #000000
 font-family = "Geist Mono"
 background-opacity = 0.7
+theme = "everforest-dark"
