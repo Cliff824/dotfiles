@@ -28,7 +28,6 @@ keymap.set("n", "<leader>as", ":ArduinoSerial<CR>")
 keymap.set("n", "<leader>ap", ":ArduinoChooseProgrammer<CR>")
 
 keymap.set("n", "<leader>vt", ":ToggleTerm<CR>")
-keymap.set("n", "<leader>vtc", ":TermExec cmd='gcc main.c && ./a.out'<CR>")
 
 --vim.keymap.set('n', '<leader>ff', telescope.find_files, {})
 --vim.keymap.set('n', '<leader>fg', telescope.live_grep, {})

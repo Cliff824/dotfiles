@@ -37,7 +37,6 @@ require("lazy").setup({
     branch = "harpoon2",
     requires = { {"nvim-lua/plenary.nvim"} }
    },
-   {'stevearc/vim-arduino'}, --arduino features
    {'stevearc/dressing.nvim'}, --fancy UI boxes
    {'sainnhe/everforest'}, --colour
    -- treesitter configuration
@@ -72,7 +71,13 @@ require("lazy").setup({
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
    },
-
+   {
+    "startup-nvim/startup.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
+    config = function()
+    require "startup".setup()
+    end
+   }, 
    },
    --colorscheme = {"everforest"},
    -- automatically check for plugin updates
