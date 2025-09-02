@@ -11,3 +11,5 @@ require("plugins.telescope")
 require("plugins.harpoon")
 require("plugins.toggleterm")
 require("plugins.lsp-config")
+require("plugins.dap")
+

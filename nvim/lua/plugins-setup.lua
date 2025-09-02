@@ -71,13 +71,15 @@ require("lazy").setup({
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
    },
+   {"mfussenegger/nvim-dap"},
+   { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
    {
     "startup-nvim/startup.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
     config = function()
     require "startup".setup()
     end
-   }, 
+   },
    },
    --colorscheme = {"everforest"},
    -- automatically check for plugin updates
