@@ -11,18 +11,10 @@ require("mason").setup({
 require("mason-lspconfig").setup({
    ensure_installed = {
       "lua_ls",
-      "clangd",
-      "html",
-      "eslint",
-      "cssls",
-      "zls"
+      "clangd"
    }
 })
 
-local lspconfig = require('lspconfig')
-lspconfig.lua_ls.setup({})
-lspconfig.clangd.setup({})
-lspconfig.html.setup({})
-lspconfig.eslint.setup({})
-lspconfig.cssls.setup({})
-lspconfig.zls.setup({})
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('clangd')
+
