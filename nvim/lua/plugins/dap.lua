@@ -3,9 +3,6 @@ local ui = require "dapui"
 
 require("dapui").setup()
 
-
-
-
 dap.listeners.before.attach.dapui_config = function()
   ui.open()
 end
@@ -49,7 +46,7 @@ dap.configurations.c = {
     end,
     args = {}, -- provide arguments if needed
     cwd = "${workspaceFolder}",
-    stopAtBeginningOfMainSubprogram = false,
+    stopAtBeginningOfMainSubprogram = true,
   },
 }
-
+dap.configurations.cpp = dap.configurations.c
