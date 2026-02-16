@@ -18,70 +18,39 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
-   spec = {
-   ("wbthomason/packer.nvim"),
-   ("nvim-lua/plenary.nvim"),-- used by other plugins
-   ("savq/melange"), --colorscheme
-   ("numToStr/Comment.nvim"), -- gcc for quick comments
-   ("nvim-tree/nvim-tree.lua"), --file explorer
-   ("nvim-tree/nvim-web-devicons"), -- icons
-   ("nvim-lualine/lualine.nvim"), -- line
-   ("mbbill/undotree"), --undo 
-   {"akinsho/toggleterm.nvim"}, --term toggle
-   {
-      'nvim-telescope/telescope.nvim', tag = '0.1.8',
-      requires = { {'nvim-lua/plenary.nvim'} }
-   },
-   {
-    "ThePrimeagen/harpoon",
+  spec = {
+  ("wbthomason/packer.nvim"),
+  ("numToStr/Comment.nvim"), -- gcc for quick comments
+  ("stevearc/oil.nvim"), --file explorer
+  ("nvim-tree/nvim-web-devicons"),
+  ("nvim-lualine/lualine.nvim"),
+  ("mbbill/undotree"),
+  {'nvim-telescope/telescope.nvim', tag = '0.1.8',
+     requires = { {'nvim-lua/plenary.nvim'} }
+  },
+  {"ThePrimeagen/harpoon",
     branch = "harpoon2",
     requires = { {"nvim-lua/plenary.nvim"} }
-   },
-   {'stevearc/dressing.nvim'}, --fancy UI boxes
-   {'sainnhe/everforest'}, --colour
-   -- treesitter configuration
-   {
-     "nvim-treesitter/nvim-treesitter",
-     run = function()
-       local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-       ts_update()
-     end
-   },
-   {"windwp/nvim-autopairs"}, -- autoclose parens, brackets, quotes, etc...
-   ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }), -- autoclose tags
-   {"xiyaowong/transparent.nvim"},
-   {"williamboman/mason.nvim"},
-   {"williamboman/mason-lspconfig.nvim"},
-   {"neovim/nvim-lspconfig"},
-   {
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
-      "TmuxNavigatorProcessList",
-    },
-    keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-    },
-   },
-   {"mfussenegger/nvim-dap"},
-   { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
-   {
-    "startup-nvim/startup.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
-    config = function()
-    require "startup".setup()
-    end
-   },
-   },
-   --colorscheme = {"everforest"},
-   -- automatically check for plugin updates
-   checker = { enabled = true },
-   })
+  },
+  {'sainnhe/everforest'}, --colour
+  {"windwp/nvim-autopairs"},
+  {"williamboman/mason.nvim"},
+  {"williamboman/mason-lspconfig.nvim"},
+  {"neovim/nvim-lspconfig"},
+  {"saghen/blink.cmp",
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    version = '1.*',
+    opts = {keymap = { preset = 'default' }},
+    fuzzy = { implementation = "prefer_rust_with_warning" }
+  },
+  {"rcarriga/nvim-dap-ui",
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"}
+  },
+  {'mrcjkb/rustaceanvim',
+    version = '^7', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+},
+-- automatically check for plugin updates
+checker = { enabled = true }})
+vim.cmd[[colorscheme everforest]]

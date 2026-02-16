@@ -1,39 +1,42 @@
-local dap = require("dap")
-local ui = require "dapui"
-
-require("dapui").setup()
+local dap, dapui = require("dap"), require("dapui")
+dapui.setup()
 
 dap.listeners.before.attach.dapui_config = function()
-  ui.open()
+  dapui.open()
 end
 dap.listeners.before.launch.dapui_config = function()
-  ui.open()
+  dapui.open()
 end
 dap.listeners.before.event_terminated.dapui_config = function()
-  ui.close()
+  dapui.close()
 end
 dap.listeners.before.event_exited.dapui_config = function()
-  ui.close()
+  dapui.close()
 end
-
- -- Eval var under cursor
-vim.keymap.set("n", "<space>?", function()
-  require("dapui").eval(nil, { enter = true })
-end)
-
-vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
-vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
-vim.keymap.set("n", "<space>dr", dap.continue)
---vim.keymap.set("n", "<F2>", dap.step_into)
---vim.keymap.set("n", "<F3>", dap.step_over)
---vim.keymap.set("n", "<F4>", dap.step_out)
---vim.keymap.set("n", "<F5>", dap.step_back)
---vim.keymap.set("n", "<F6>", dap.restart)
 
 dap.adapters.gdb = {
   type = "executable",
   command = "gdb",
   args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
+}
+
+dap.adapters.lldb = {
+  type = "executable",
+  command = "lldb-dap",
+  name = "lldb"
+}
+
+dap.configurations.rust = {
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+  },
 }
 
 dap.configurations.c = {
@@ -46,7 +49,8 @@ dap.configurations.c = {
     end,
     args = {}, -- provide arguments if needed
     cwd = "${workspaceFolder}",
-    stopAtBeginningOfMainSubprogram = true,
+    stopOnEntry = true,
   },
 }
 dap.configurations.cpp = dap.configurations.c
+
