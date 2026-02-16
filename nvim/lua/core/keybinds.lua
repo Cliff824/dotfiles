@@ -7,6 +7,8 @@ keymap.set("n", "<leader>sx", ":close<CR>") --close current split
 keymap.set("n", "<leader>w", ":write<CR>")
 keymap.set("n", "<leader>q", ":quit<CR>")
 
+keymap.set("n", "<leader>pu", function () vim.pack.update() end)
+
 keymap.set("n", "<leader>u", ":UndotreeToggle<CR>")
 keymap.set("n", "<leader>o", ":Oil<CR>")
 

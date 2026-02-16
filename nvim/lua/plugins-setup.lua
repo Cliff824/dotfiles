@@ -1,56 +1,24 @@
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.pack.add({
+  {src = "https://github.com/numToStr/Comment.nvim"},-- gcc for quick comments
+  {src = "https://github.com/stevearc/oil.nvim"},
+  {src = "https://github.com/nvim-tree/nvim-web-devicons"},
+  {src = "https://github.com/nvim-lualine/lualine.nvim"},
+  {src = "https://github.com/mbbill/undotree"},
+  {src = "https://github.com/nvim-lua/plenary.nvim"},
+  {src = "https://github.com/nvim-telescope/telescope.nvim", tag = '0.1.8'},
+  {src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2"},
+  {src = "https://github.com/sainnhe/everforest"},
+  {src = "https://github.com/windwp/nvim-autopairs"},
+  {src = "https://github.com/williamboman/mason.nvim"},
+  {src = "https://github.com/williamboman/mason-lspconfig.nvim"},
+  {src = "https://github.com/neovim/nvim-lspconfig"},
+  {src = "https://github.com/rafamadriz/friendly-snippets"},
+  {src = "https://github.com/saghen/blink.cmp", version = 'v1.9.1'},
+  {src = "https://github.com/mfussenegger/nvim-dap"},
+  {src = "https://github.com/nvim-neotest/nvim-nio"},
+  {src = "https://github.com/rcarriga/nvim-dap-ui"},
+  {src = "https://github.com/mrcjkb/rustaceanvim", version = 'v8.0.0'},
+  -- {src = "https://github.com/"},
+})
 
-require("lazy").setup({
-  spec = {
-  ("wbthomason/packer.nvim"),
-  ("numToStr/Comment.nvim"), -- gcc for quick comments
-  ("stevearc/oil.nvim"), --file explorer
-  ("nvim-tree/nvim-web-devicons"),
-  ("nvim-lualine/lualine.nvim"),
-  ("mbbill/undotree"),
-  {'nvim-telescope/telescope.nvim', tag = '0.1.8',
-     requires = { {'nvim-lua/plenary.nvim'} }
-  },
-  {"ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    requires = { {"nvim-lua/plenary.nvim"} }
-  },
-  {'sainnhe/everforest'}, --colour
-  {"windwp/nvim-autopairs"},
-  {"williamboman/mason.nvim"},
-  {"williamboman/mason-lspconfig.nvim"},
-  {"neovim/nvim-lspconfig"},
-  {"saghen/blink.cmp",
-    dependencies = { 'rafamadriz/friendly-snippets' },
-    version = '1.*',
-    opts = {keymap = { preset = 'default' }},
-    fuzzy = { implementation = "prefer_rust_with_warning" }
-  },
-  {"rcarriga/nvim-dap-ui",
-    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"}
-  },
-  {'mrcjkb/rustaceanvim',
-    version = '^7', -- Recommended
-    lazy = false, -- This plugin is already lazy
-  },
-},
--- automatically check for plugin updates
-checker = { enabled = true }})
 vim.cmd[[colorscheme everforest]]

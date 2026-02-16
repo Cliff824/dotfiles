@@ -11,3 +11,7 @@ require('lualine').setup({
       theme = require("lualine.themes.everforest")
    }
 })
+
+require('blink.cmp').setup({
+  fuzzy = { implementation = "prefer_rust_with_warning" }
+})

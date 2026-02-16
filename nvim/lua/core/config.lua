@@ -34,6 +34,3 @@ opt.splitbelow = true
 -- word joiner
 opt.iskeyword:append("-")
 opt.iskeyword:append("_")
-
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
