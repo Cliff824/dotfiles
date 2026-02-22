@@ -18,4 +18,4 @@ require("mason-lspconfig").setup({
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('clangd')
--- vim.lsp.enable('rust_analyzer') don't do this as rustaceanvim does it for us
+vim.lsp.enable('rust_analyzer')
