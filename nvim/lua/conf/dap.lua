@@ -14,12 +14,6 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
-dap.adapters.gdb = {
-  type = "executable",
-  command = "gdb",
-  args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
-}
-
 dap.adapters.lldb = {
   type = "executable",
   command = "lldb-dap",
@@ -32,6 +26,7 @@ dap.configurations.rust = {
     type = "lldb",
     request = "launch",
     program = function()
+      vim.fn.system("cargo build")
       return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     end,
     cwd = "${workspaceFolder}",
@@ -42,14 +37,14 @@ dap.configurations.rust = {
 dap.configurations.c = {
   {
     name = "Launch",
-    type = "gdb",
+    type = "lldb",
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      vim.fn.system("make build")
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/bin/', 'file')
     end,
-    args = {}, -- provide arguments if needed
     cwd = "${workspaceFolder}",
-    stopOnEntry = true,
+    stopOnEntry = false,
   },
 }
 dap.configurations.cpp = dap.configurations.c

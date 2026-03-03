@@ -2,14 +2,12 @@ vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>sv", "<C-w>v") --vertical split
 vim.keymap.set("n", "<leader>sh", "<C-w>s") --horizontal split
+vim.keymap.set('n', 'm', ':vsplit | terminal<CR>')
 vim.keymap.set("n", "<leader>sx", ":close<CR>") --close current split
 vim.keymap.set("n", "<leader>w", ":write<CR>")
 vim.keymap.set("n", "<leader>q", ":quit<CR>")
 
 vim.keymap.set("n", "<leader>pu", function () vim.pack.update() end)
-
-vim.keymap.set("n", "<leader>u", ":UndotreeToggle<CR>")
-vim.keymap.set("n", "<leader>o", ":Oil<CR>")
 
 vim.keymap.set("n", "<leader>o", ":Oil<CR>")
 
@@ -39,6 +37,3 @@ vim.keymap.set({'n'}, '<leader>lf', vim.lsp.buf.format)
 
 vim.keymap.set({ 'n', 'x' }, 'cp', '"+y')
 vim.keymap.set({ 'n', 'x' }, 'cv', '"+p')
-
-vim.keymap.set('n', 'm', ':vsplit | terminal make<CR>')
-vim.keymap.set('n', '<leader>m', ':vsplit | terminal make run<CR>')
