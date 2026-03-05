@@ -1,38 +1,41 @@
 -- files
 vim.lsp.log.set_level("off")
-vim.o.backup = false
-vim.o.swapfile = false
-vim.o.undofile = false
-vim.o.updatetime = 300
-vim.o.autoread = true
+vim.opt.backup = false
+vim.opt.swapfile = false
+vim.opt.undofile = false
+vim.opt.updatetime = 300
+vim.opt.autoread = true
 
 -- indents & tabs
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
-vim.o.autoindent = true
-vim.o.wrap = false
-vim.o.number = true
-vim.o.wrap = false
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.wrap = false
+vim.opt.number = true
+vim.opt.wrap = false
 
 -- search
-vim.o.ignorecase = true
+vim.opt.ignorecase = true
 
 -- appearence
-vim.o.termguicolors = true
-vim.o.background = "dark"
-vim.o.signcolumn = "yes"
-vim.o.winborder = "rounded"
-vim.o.cursorline = true
-vim.o.backspace = "indent,eol,start"
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.signcolumn = "yes"
+vim.opt.winborder = "rounded"
+vim.opt.cursorline = true
+vim.opt.backspace = "indent,eol,start"
 
 -- system clipboard
 vim.opt.clipboard = "unnamedplus"
 
 -- splits
-vim.o.splitright = true
-vim.o.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
--- word joiner
+-- woptrd joiner
 vim.opt.iskeyword:append("-")
 vim.opt.iskeyword:append("_")
+
+-- mouse only in normal and visual
+vim.opt.mouse = "nv"
